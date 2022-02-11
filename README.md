@@ -1,18 +1,16 @@
-# Vue 3 + Typescript + Vite
+# WebXR-Vite-Babylon-Simple
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue
-3 `<script setup>` SFCs, check out
-the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Minimal setup for WebXR development using:
 
-## Recommended IDE Setup
+* [vite](https://vitejs.dev/)
+* [typescript](https://www.typescriptlang.org/)
+* [vue 3](https://vuejs.org/)
+* [babylonjs 5](https://www.babylonjs.com/) (ES6)
 
-- [VSCode](https://code.visualstudio.com/)
-  + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+Makes minimal changes from the default vite scaffolding.
 
-## Type Support For `.vue` Imports in TS
+Uses the [ES6 packaging from Babylon.js](https://doc.babylonjs.com/divingDeeper/developWithBjs/treeShaking).
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type
-by default. In most cases this is fine if you don't really care about component prop types outside of templates.
-However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using
-manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off`
-from VSCode command palette.
+This repo includes enough setup so that controller models can be loaded
+for [supported XR devices](https://github.com/immersive-web/webxr-input-profiles). This requires making sure the
+Babylon.js GLTF/GLB loader is active.
