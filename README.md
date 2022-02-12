@@ -26,8 +26,8 @@ from @babylonjs/core works.)
 Relevant files:
 
 * [package.json](package.json) - @babylonjs/core, @babylonjs/loaders, & @types/webxr
-* [TestView001.vue](src\components\TestView001.vue) - Shows minor vue and typescript typing details
-* [TestScene001.ts](src\js\TestScene001.ts) - Shows the ES6 imports
+* [TestView001.vue](src/components/TestView001.vue) - Shows minor vue and typescript typing details
+* [TestScene001.ts](src/js/TestScene001.ts) - Shows the ES6 imports
 
 ## Usage
 
