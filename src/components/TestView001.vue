@@ -12,18 +12,24 @@
   </div>
 </template>
 <script lang="ts" setup>
+
+// Vue hooks, etc
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
+
+// These are needed to workaround navigator.xr seemingly not being typed correctly in @types/webxr
 import { Navigator as NavigatorXR, XRSystem } from 'webxr'
-
-import { TestScene001 } from '../js/TestScene001'
 import { Engine } from '@babylonjs/core/Engines/engine.js'
-
-const renderCanvas = ref<HTMLCanvasElement | null>(null)
-
-let onResize: EventListener | null = null
+import { TestScene001 } from '../js/TestScene001'
 
 let xrSystem: XRSystem | null = null
 
+// Vue 3 composition API handles refs in a very specific way
+const renderCanvas = ref<HTMLCanvasElement | null>(null)
+
+// Variable to store onResize event handler so we can explicitly remove it later
+let onResize: EventListener | null = null
+
+// Reactive page data
 const data = reactive({
   asyncChecksDone: false,
   errorMsg: '',
@@ -32,7 +38,9 @@ const data = reactive({
 })
 
 onMounted(() => {
+
   // Check that navigator.xr exists
+  // Multiple ways to do this, and babylone has some built-in support to do it
   data.isWebXrSupported = ("xr" in window.navigator)
   if (!data.isWebXrSupported) {
     data.asyncChecksDone = true
@@ -40,6 +48,7 @@ onMounted(() => {
   }
 
   // Check that immersive-vr is supported
+  // Store xrSystem to workaround navigator.xr typing problems
   xrSystem = (navigator as unknown as NavigatorXR).xr
   xrSystem?.isSessionSupported('immersive-vr')
     .then((result: boolean) => {
@@ -50,7 +59,7 @@ onMounted(() => {
     })
     .catch((reason: string) => {
       data.errorMsg = reason
-      console.log(reason)
+      console.error(reason)
     })
     .finally(() => {
       data.asyncChecksDone = true
