@@ -40,7 +40,7 @@ const data = reactive({
 onMounted(() => {
 
   // Check that navigator.xr exists
-  // Multiple ways to do this, and babylone has some built-in support to do it
+  // Multiple ways to do this, and babylon has some built-in support to do it
   data.isWebXrSupported = ("xr" in window.navigator)
   if (!data.isWebXrSupported) {
     data.asyncChecksDone = true

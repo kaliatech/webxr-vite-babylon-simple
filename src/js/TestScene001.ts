@@ -52,10 +52,6 @@ export class TestScene001 {
     const envHelper = scene.createDefaultEnvironment({
       skyboxSize: 30,
       groundColor: new Color3(0.5, 0.5, 0.5),
-      enableGroundMirror: true,
-      groundMirrorAmount: 0.5,
-      enableGroundShadow: true
-
     })
 
     // Add axes viewer with 1 unit lengths
