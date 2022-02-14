@@ -5,7 +5,7 @@
 node_modules
 
 # Vue/Vite
-dist
+# dist # commented for easy publishing on github
 dist-ssr
 *.local
 
