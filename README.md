@@ -29,6 +29,9 @@ Relevant files:
 * [TestView001.vue](src/components/TestView001.vue) - Shows minor vue and typescript typing details
 * [TestScene001.ts](src/js/TestScene001.ts) - Shows the ES6 imports
 
+A more advanced project (with a more opinionated setup) is located here:
+* https://github.com/kaliatech/webxr-tests-3
+
 ## Usage
 
 Developed and tested with node 16.x, but 14.x probably works too.
