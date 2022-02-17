@@ -2,6 +2,7 @@ import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera.js'
 import { AxesViewer } from "@babylonjs/core/Debug/axesViewer.js";
 import { Color3 } from "@babylonjs/core/Maths/math.color.js";
 import { Engine } from '@babylonjs/core/Engines/engine.js'
+import { EnvironmentHelper } from '@babylonjs/core/Helpers/environmentHelper'
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight.js'
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
 import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder.js";
@@ -11,8 +12,8 @@ import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial.js"
 import { Vector3 } from '@babylonjs/core/Maths/math.vector.js'
 import { WebXRDefaultExperience } from '@babylonjs/core/XR/webXRDefaultExperience.js'
 
-// Used only for the scene createDefaultEnvironment
-import "@babylonjs/core/Helpers/sceneHelpers";
+// Required for EnvironmentHelper
+import "@babylonjs/core/Materials/Textures/Loaders"
 
 // Required for loading controller models from WebXR registry
 import '@babylonjs/loaders/glTF'
@@ -49,10 +50,12 @@ export class TestScene001 {
 
     // Create default scene
     const scene = new Scene(babylonEngine)
-    const envHelper = scene.createDefaultEnvironment({
+
+    // Create a default environment (skybox, ground mesh, etc)
+    const envHelper = new EnvironmentHelper({
       skyboxSize: 30,
       groundColor: new Color3(0.5, 0.5, 0.5),
-    })
+    }, scene)
 
     // Add axes viewer with 1 unit lengths
     new AxesViewer(scene, 1)
