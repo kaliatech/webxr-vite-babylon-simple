@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 
 // Vue hooks, etc
-import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref, nextTick } from 'vue'
 
 // These are needed to workaround navigator.xr seemingly not being typed correctly in @types/webxr
 import { Navigator as NavigatorXR, XRSystem } from 'webxr'
@@ -54,15 +54,17 @@ onMounted(() => {
     .then((result: boolean) => {
       if (result) {
         data.isImmersiveVrSupported = result
-        init()
+        data.asyncChecksDone = true
+
+        // Initialize babylon in nextTick because before nextTick, the canvas size is still zero.
+        nextTick(() => {
+          init()
+        })
       }
     })
     .catch((reason: string) => {
       data.errorMsg = reason
       console.error(reason)
-    })
-    .finally(() => {
-      data.asyncChecksDone = true
     })
 
 })
@@ -101,14 +103,12 @@ function init() {
 .container-render {
   display: flex;
   flex: 1;
-  border: 1px solid red;
   min-height: 0; /* https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size */
   min-width: 0;
 }
 
 .renderCanvas {
   flex: 1;
-  border: 1px solid black;
   min-height: 0;
   min-width: 0;
 }

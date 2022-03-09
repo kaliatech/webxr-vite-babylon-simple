@@ -108,10 +108,6 @@ export class TestScene001 {
       optionalFeatures: true,
     })
 
-    // An initial resize seems to be required with the current canvas setup. Not sure why. Subsequent window
-    // resizes are handled by event handler.
-    babylonEngine.resize()
-
     // Run render loop to render future frames.
     babylonEngine.runRenderLoop(function () {
       if (scene) {
