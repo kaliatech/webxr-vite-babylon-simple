@@ -17,7 +17,7 @@
 import { onMounted, onUnmounted, reactive, ref, nextTick } from 'vue'
 
 // These are needed to workaround navigator.xr seemingly not being typed correctly in @types/webxr
-import { Navigator as NavigatorXR, XRSystem } from 'webxr'
+import type { Navigator as NavigatorXR, XRSystem } from 'webxr'
 import { Engine } from '@babylonjs/core/Engines/engine.js'
 import { TestScene001 } from '../js/TestScene001'
 
