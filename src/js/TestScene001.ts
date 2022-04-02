@@ -23,19 +23,11 @@ import '@babylonjs/loaders/glTF'
 //  "Uncaught (in promise) Build of NodeMaterial failed: input rgba from block FragmentOutput[FragmentOutputBlock] is not connected and is not optional."
 import '@babylonjs/core/Materials/Node/Blocks'
 
-
-// ******
-// Miscellaneous import notes.
-// ******
-
-// GTLF load plugin registration wasn't working in Babylon 5.x.alpha releases, but seems okay now. Previously had to do:
-//import { GLTFFileLoader } from '@babylonjs/loaders/glTF/glTFFileLoader'
-//SceneLoader.RegisterPlugin(new GLTFFileLoader())
-
-// These might be required for controllers sometimes? It was required in certain Babylon 5.x.alpha releases. Currently
-// though, Meta Quest 2 controllers seem to be loading fine, with animations.
-//import '@babylonjs/core/Loading/Plugins/babylonFileLoader'
-//import '@babylonjs/core/Animations/animatable'
+// Import animatable side effects with recent babylon v5.0.x releases for
+// loading controllers, else:
+//  "TypeError: sceneToRenderTo.beginAnimation is not a function
+//   at WebXRMotionControllerTeleportation2._createDefaultTargetMesh (WebXRControllerTeleportation.ts:751:29)"
+import '@babylonjs/core/Animations/animatable'
 
 export class TestScene001 {
   canvas: HTMLCanvasElement
